@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import HangmanDrawing from "./HangmanDrawing";
+import HangmanWord from "./HangmanWord";
+import Keyboard from "./Keyboard";
+import words from "./wordList.json";
 function App() {
+  const [word, setWord] = useState(() => {
+    return words[Math.floor(Math.random() * words.length)];
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='max-w-4xl flex flex-col gap-8 m-auto items-center'>
+      <div className='text-4xl items-center'>Win Lose</div>
+      <HangmanDrawing />
+      <HangmanWord />
+      <div className='self-stretch'>
+        <Keyboard />
+      </div>
     </div>
   );
 }
